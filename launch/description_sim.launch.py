@@ -13,6 +13,7 @@ def generate_launch_description():
 
     pkg_share = FindPackageShare("go2_description").find("go2_description")
     default_model_path = os.path.join(pkg_share, "xacro", "robot.xacro")
+    rviz_config_path = os.path.join(pkg_share, "rviz", "go2.rviz")
 
     declare_use_sim_time = DeclareLaunchArgument(
         "use_sim_time", default_value="false",
@@ -47,6 +48,7 @@ def generate_launch_description():
         package="rviz2",
         executable="rviz2",
         output="screen",
+        arguments=["-d", rviz_config_path],
         parameters=[{"use_sim_time": use_sim_time}],
     )
 
